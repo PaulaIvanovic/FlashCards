@@ -28,6 +28,8 @@ public class LoginPage extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+			//ako postoji frame zatvori ga
+				
 				try {
 					LoginPage frame = new LoginPage();
 					frame.setVisible(true);
@@ -71,14 +73,6 @@ public class LoginPage extends JFrame {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String un = user.getText();
-				String pas = pass.getText();
-				
-				if(un.equals("admin") && pass.equals("123")) {
-					JOptionPane.showMessageDialog(null, "Login successful");
-				}else {
-					JOptionPane.showMessageDialog(null, "Invalid Username or Password");
-				}
 			}
 		});
 		btnLogin.setBounds(329, 236, 85, 21);
@@ -102,6 +96,13 @@ public class LoginPage extends JFrame {
 		panel_1.add(lblNewLabel_2);
 		
 		JButton btnNewButton = new JButton("Register");
+		btnNewButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				RegisterPage register = new RegisterPage();
+				register.setVisible(true);
+				dispose();
+			}
+		});
 		btnNewButton.setBounds(329, 290, 85, 21);
 		panel_1.add(btnNewButton);
 	}
