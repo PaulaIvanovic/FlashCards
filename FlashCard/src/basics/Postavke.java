@@ -120,8 +120,8 @@ public class Postavke extends JFrame {
 		
 		JLabel lblDefaultSlika = new JLabel("default slika");
 		//tu nesto ne dela
-		Image defaultSlika = new ImageIcon(this.getClass().getResource("default.png")).getImage();
-		lblDefaultSlika.setIcon(new ImageIcon(defaultSlika));
+		/* Image defaultSlika = new ImageIcon(this.getClass().getResource("default.png")).getImage();
+		lblDefaultSlika.setIcon(new ImageIcon(defaultSlika)); */
 		lblDefaultSlika.setBounds(36, 49, 81, 102);
 		contentPane.add(lblDefaultSlika);
 		contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblUsername, textField, btnPromjeniUsername, lblEmail, textField_1, lbPassword, btnPromijeniLozinku, btnOdustani, btnSpremiPromjene, lblDefaultSlika}));

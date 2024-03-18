@@ -1,31 +1,18 @@
 package basics;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
-import java.awt.Color;
-import java.awt.GridLayout;
-import javax.swing.JButton;
-import javax.swing.ImageIcon;
-import java.awt.SystemColor;
-import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Dimension;
-import javax.swing.SwingConstants;
-import java.awt.Component;
-import java.awt.ComponentOrientation;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JSplitPane;
-import javax.swing.JToolBar;
-import javax.swing.JTextField;
 
-public class GrupeKartica extends JFrame {
+public class PodgrupeKartica extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -37,7 +24,7 @@ public class GrupeKartica extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GrupeKartica frame = new GrupeKartica();
+					PodgrupeKartica frame = new PodgrupeKartica();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,10 +36,10 @@ public class GrupeKartica extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GrupeKartica() {
+	public PodgrupeKartica() {
 		setFont(new Font("Niagara Engraved", Font.PLAIN, 12));
 		setForeground(SystemColor.activeCaption);
-		setTitle("GRUPA KARTICA");
+		setTitle("PODGRUPA KARTICA");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1004, 604);
 		contentPane = new JPanel();
@@ -63,12 +50,12 @@ public class GrupeKartica extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnUredi = new JButton("Edit");
-		btnUredi.setBounds(597, 10, 69, 34);
+		btnUredi.setBounds(585, 10, 69, 34);
 		contentPane.add(btnUredi);
 		btnUredi.setBackground(Color.PINK);
 		
-		JButton btnNovaGrupa = new JButton("Add group");
-		btnNovaGrupa.setBounds(676, 10, 105, 34);
+		JButton btnNovaGrupa = new JButton("Add subgroup");
+		btnNovaGrupa.setBounds(664, 10, 117, 34);
 		contentPane.add(btnNovaGrupa);
 		btnNovaGrupa.setBackground(new Color(216, 191, 216));
 		
@@ -81,6 +68,11 @@ public class GrupeKartica extends JFrame {
 		btnKorisnik.setBounds(791, 10, 87, 34);
 		contentPane.add(btnKorisnik);
 		btnKorisnik.setBackground(new Color(230, 230, 250));
+		
+		JButton btnGoBack = new JButton("Go back");
+		btnGoBack.setBackground(new Color(204, 102, 153));
+		btnGoBack.setBounds(483, 10, 92, 34);
+		contentPane.add(btnGoBack);
 		btnPostavke.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -90,4 +82,5 @@ public class GrupeKartica extends JFrame {
 			}
 		});
 	}
+
 }
