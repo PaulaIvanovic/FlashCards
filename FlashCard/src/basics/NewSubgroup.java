@@ -12,7 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-public class NovaPodgrupa extends JFrame {
+public class NewSubgroup extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -26,7 +26,7 @@ public class NovaPodgrupa extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					NovaPodgrupa frame = new NovaPodgrupa();
+					NewSubgroup frame = new NewSubgroup();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,8 +38,8 @@ public class NovaPodgrupa extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public NovaPodgrupa() {
-		setTitle("NOVA PODGRUPA");
+	public NewSubgroup() {
+		setTitle("NEW SUBGROUP");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 530);
 		contentPane = new JPanel();
@@ -49,11 +49,11 @@ public class NovaPodgrupa extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblImePodgrupe = new JLabel("Subgroup name:");
-		lblImePodgrupe.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblImePodgrupe.setForeground(Color.WHITE);
-		lblImePodgrupe.setBounds(36, 60, 160, 25);
-		contentPane.add(lblImePodgrupe);
+		JLabel name = new JLabel("Subgroup name:");
+		name.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		name.setForeground(Color.WHITE);
+		name.setBounds(36, 60, 160, 25);
+		contentPane.add(name);
 		
 		JLabel lblNewLabel_1 = new JLabel("*");
 		lblNewLabel_1.setForeground(Color.PINK);
@@ -61,6 +61,7 @@ public class NovaPodgrupa extends JFrame {
 		lblNewLabel_1.setBounds(25, 66, 19, 13);
 		contentPane.add(lblNewLabel_1);
 		
+		//enter subgroup name
 		txtEnterNameOf = new JTextField();
 		txtEnterNameOf.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtEnterNameOf.setHorizontalAlignment(SwingConstants.CENTER);
@@ -70,11 +71,11 @@ public class NovaPodgrupa extends JFrame {
 		contentPane.add(txtEnterNameOf);
 		txtEnterNameOf.setColumns(10);
 		
-		JLabel lblOdaberiBoju = new JLabel("Choose subgroup color:");
-		lblOdaberiBoju.setForeground(Color.WHITE);
-		lblOdaberiBoju.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblOdaberiBoju.setBounds(36, 162, 218, 57);
-		contentPane.add(lblOdaberiBoju);
+		JLabel color = new JLabel("Choose subgroup color:");
+		color.setForeground(Color.WHITE);
+		color.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		color.setBounds(36, 162, 218, 57);
+		contentPane.add(color);
 		
 		JLabel lblNewLabel_3 = new JLabel("* this fields can not be empty");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -82,24 +83,27 @@ public class NovaPodgrupa extends JFrame {
 		lblNewLabel_3.setBounds(50, 438, 202, 13);
 		contentPane.add(lblNewLabel_3);
 		
-		JButton btnOdustani = new JButton("Cancel");
-		btnOdustani.setForeground(new Color(102, 0, 102));
-		btnOdustani.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnOdustani.setBounds(505, 419, 111, 32);
-		contentPane.add(btnOdustani);
+		//button cancel
+		JButton cancel = new JButton("Cancel");
+		cancel.setForeground(new Color(102, 0, 102));
+		cancel.setFont(new Font("Tahoma", Font.BOLD, 13));
+		cancel.setBounds(505, 419, 111, 32);
+		contentPane.add(cancel);
 		
-		JButton btnSpremi = new JButton("Finish");
-		btnSpremi.setForeground(new Color(102, 0, 102));
-		btnSpremi.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnSpremi.setBounds(642, 419, 111, 32);
-		contentPane.add(btnSpremi);
+		//button finish
+		JButton finish = new JButton("Finish");
+		finish.setForeground(new Color(102, 0, 102));
+		finish.setFont(new Font("Tahoma", Font.BOLD, 13));
+		finish.setBounds(642, 419, 111, 32);
+		contentPane.add(finish);
 		
-		JLabel lblPodrugpaIzDatoteke = new JLabel("Automatic creation of subgroups from file:");
-		lblPodrugpaIzDatoteke.setForeground(Color.WHITE);
-		lblPodrugpaIzDatoteke.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblPodrugpaIzDatoteke.setBounds(36, 275, 403, 39);
-		contentPane.add(lblPodrugpaIzDatoteke);
+		JLabel text = new JLabel("Automatic creation of subgroups from file:");
+		text.setForeground(Color.WHITE);
+		text.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		text.setBounds(36, 275, 403, 39);
+		contentPane.add(text);
 		
+		//enter file name
 		txtEnterFileName = new JTextField();
 		txtEnterFileName.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		txtEnterFileName.setHorizontalAlignment(SwingConstants.CENTER);
@@ -109,11 +113,12 @@ public class NovaPodgrupa extends JFrame {
 		contentPane.add(txtEnterFileName);
 		txtEnterFileName.setColumns(10);
 		
-		JButton btnUcitaj = new JButton("Load");
-		btnUcitaj.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnUcitaj.setForeground(new Color(102, 0, 102));
-		btnUcitaj.setBounds(578, 322, 100, 30);
-		contentPane.add(btnUcitaj);
+		//button load
+		JButton load = new JButton("Load");
+		load.setFont(new Font("Tahoma", Font.BOLD, 12));
+		load.setForeground(new Color(102, 0, 102));
+		load.setBounds(578, 322, 100, 30);
+		contentPane.add(load);
 	}
 
 }

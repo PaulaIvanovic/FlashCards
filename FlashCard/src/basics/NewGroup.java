@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
-public class NovaGrupa extends JFrame {
+public class NewGroup extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -24,7 +24,7 @@ public class NovaGrupa extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					NovaGrupa frame = new NovaGrupa();
+					NewGroup frame = new NewGroup();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,8 +36,8 @@ public class NovaGrupa extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public NovaGrupa() {
-		setTitle("NOVA GRUPA");
+	public NewGroup() {
+		setTitle("NEW GROUP");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 530);
 		contentPane = new JPanel();
@@ -47,11 +47,11 @@ public class NovaGrupa extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblImeGrupe = new JLabel("Group name:");
-		lblImeGrupe.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblImeGrupe.setForeground(Color.WHITE);
-		lblImeGrupe.setBounds(36, 60, 108, 25);
-		contentPane.add(lblImeGrupe);
+		JLabel GroupName = new JLabel("Group name:");
+		GroupName.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GroupName.setForeground(Color.WHITE);
+		GroupName.setBounds(36, 60, 108, 25);
+		contentPane.add(GroupName);
 		
 		JLabel lblNewLabel_1 = new JLabel("*");
 		lblNewLabel_1.setForeground(Color.PINK);
@@ -68,11 +68,11 @@ public class NovaGrupa extends JFrame {
 		contentPane.add(txtEnterNameOf);
 		txtEnterNameOf.setColumns(10);
 		
-		JLabel lblBojaGrupe = new JLabel("Choose group color:");
-		lblBojaGrupe.setForeground(Color.WHITE);
-		lblBojaGrupe.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblBojaGrupe.setBounds(36, 176, 218, 57);
-		contentPane.add(lblBojaGrupe);
+		JLabel color = new JLabel("Choose group color:");
+		color.setForeground(Color.WHITE);
+		color.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		color.setBounds(36, 176, 218, 57);
+		contentPane.add(color);
 		
 		JLabel lblNewLabel_3 = new JLabel("* this fields can not be empty");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -80,16 +80,18 @@ public class NovaGrupa extends JFrame {
 		lblNewLabel_3.setBounds(50, 438, 202, 13);
 		contentPane.add(lblNewLabel_3);
 		
-		JButton btnOdustani = new JButton("Cancel");
-		btnOdustani.setForeground(new Color(102, 0, 102));
-		btnOdustani.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnOdustani.setBounds(505, 419, 111, 32);
-		contentPane.add(btnOdustani);
+		// button cancel
+		JButton cancel = new JButton("Cancel");
+		cancel.setForeground(new Color(102, 0, 102));
+		cancel.setFont(new Font("Tahoma", Font.BOLD, 13));
+		cancel.setBounds(505, 419, 111, 32);
+		contentPane.add(cancel);
 		
-		JButton btnSpremi = new JButton("Finish");
-		btnSpremi.setForeground(new Color(102, 0, 102));
-		btnSpremi.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnSpremi.setBounds(642, 419, 111, 32);
-		contentPane.add(btnSpremi);
+		// button save
+		JButton save = new JButton("Finish");
+		save.setForeground(new Color(102, 0, 102));
+		save.setFont(new Font("Tahoma", Font.BOLD, 13));
+		save.setBounds(642, 419, 111, 32);
+		contentPane.add(save);
 	}
 }

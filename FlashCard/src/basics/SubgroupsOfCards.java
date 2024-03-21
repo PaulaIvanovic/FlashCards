@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class PodgrupeKartica extends JFrame {
+public class SubgroupsOfCards extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -24,7 +24,7 @@ public class PodgrupeKartica extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PodgrupeKartica frame = new PodgrupeKartica();
+					SubgroupsOfCards frame = new SubgroupsOfCards();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,7 +36,7 @@ public class PodgrupeKartica extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public PodgrupeKartica() {
+	public SubgroupsOfCards() {
 		setFont(new Font("Niagara Engraved", Font.PLAIN, 12));
 		setForeground(SystemColor.activeCaption);
 		setTitle("PODGRUPA KARTICA");
@@ -49,35 +49,40 @@ public class PodgrupeKartica extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnUredi = new JButton("Edit");
-		btnUredi.setBounds(585, 10, 69, 34);
-		contentPane.add(btnUredi);
-		btnUredi.setBackground(Color.PINK);
+		//button edit
+		JButton edit = new JButton("Edit");
+		edit.setBounds(585, 10, 69, 34);
+		contentPane.add(edit);
+		edit.setBackground(Color.PINK);
 		
-		JButton btnNovaGrupa = new JButton("Add subgroup");
-		btnNovaGrupa.setBounds(664, 10, 117, 34);
-		contentPane.add(btnNovaGrupa);
-		btnNovaGrupa.setBackground(new Color(216, 191, 216));
+		//button add new subgroup
+		JButton newSub = new JButton("Add subgroup");
+		newSub.setBounds(664, 10, 117, 34);
+		contentPane.add(newSub);
+		newSub.setBackground(new Color(216, 191, 216));
 		
-		JButton btnPostavke = new JButton("Settings");
-		btnPostavke.setBounds(888, 10, 92, 34);
-		contentPane.add(btnPostavke);
-		btnPostavke.setBackground(new Color(255, 182, 193));
+		//button settings
+		JButton settings = new JButton("Settings");
+		settings.setBounds(888, 10, 92, 34);
+		contentPane.add(settings);
+		settings.setBackground(new Color(255, 182, 193));
 		
-		JButton btnKorisnik = new JButton("User");
-		btnKorisnik.setBounds(791, 10, 87, 34);
-		contentPane.add(btnKorisnik);
-		btnKorisnik.setBackground(new Color(230, 230, 250));
+		//button user
+		JButton user = new JButton("User");
+		user.setBounds(791, 10, 87, 34);
+		contentPane.add(user);
+		user.setBackground(new Color(230, 230, 250));
 		
+		//button go back
 		JButton btnGoBack = new JButton("Go back");
 		btnGoBack.setBackground(new Color(204, 102, 153));
 		btnGoBack.setBounds(483, 10, 92, 34);
 		contentPane.add(btnGoBack);
-		btnPostavke.addActionListener(new ActionListener() {
+		settings.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNovaGrupa.addActionListener(new ActionListener() {
+		newSub.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});

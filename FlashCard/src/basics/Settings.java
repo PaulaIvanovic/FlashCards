@@ -21,7 +21,7 @@ import java.awt.Image;
 
 import javax.swing.UIManager;
 
-public class Postavke extends JFrame {
+public class Settings extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -36,7 +36,7 @@ public class Postavke extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Postavke frame = new Postavke();
+					Settings frame = new Settings();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,8 +48,8 @@ public class Postavke extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Postavke() {
-		setTitle("POSTAVKE");
+	public Settings() {
+		setTitle("SETTINGS");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 917, 610);
 		contentPane = new JPanel();
@@ -72,13 +72,14 @@ public class Postavke extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		JButton btnPromjeniUsername = new JButton("Promjeni username");
-		btnPromjeniUsername.setForeground(new Color(102, 0, 102));
-		btnPromjeniUsername.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnPromjeniUsername.setBounds(246, 375, 159, 19);
-		btnPromjeniUsername.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		btnPromjeniUsername.setBackground(new Color(248, 248, 255));
-		contentPane.add(btnPromjeniUsername);
+		//button change username
+		JButton changeUsername = new JButton("Change username");
+		changeUsername.setForeground(new Color(102, 0, 102));
+		changeUsername.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		changeUsername.setBounds(246, 375, 159, 19);
+		changeUsername.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		changeUsername.setBackground(new Color(248, 248, 255));
+		contentPane.add(changeUsername);
 		
 		JLabel lblEmail = new JLabel("Email:");
 		lblEmail.setForeground(new Color(255, 255, 255));
@@ -97,26 +98,29 @@ public class Postavke extends JFrame {
 		lbPassword.setBounds(36, 428, 98, 13);
 		contentPane.add(lbPassword);
 		
-		JButton btnPromijeniLozinku = new JButton("Promijeni lozinku");
-		btnPromijeniLozinku.setForeground(new Color(102, 0, 102));
-		btnPromijeniLozinku.setBackground(new Color(248, 248, 255));
-		btnPromijeniLozinku.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnPromijeniLozinku.setBounds(36, 451, 181, 21);
-		contentPane.add(btnPromijeniLozinku);
+		//button change password
+		JButton changePassword = new JButton("Change password");
+		changePassword.setForeground(new Color(102, 0, 102));
+		changePassword.setBackground(new Color(248, 248, 255));
+		changePassword.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		changePassword.setBounds(36, 451, 181, 21);
+		contentPane.add(changePassword);
 		
-		btnOdustani = new JButton("Odustani");
-		btnOdustani.setForeground(new Color(102, 0, 102));
-		btnOdustani.setBackground(new Color(248, 248, 255));
-		btnOdustani.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnOdustani.setBounds(592, 525, 98, 21);
-		contentPane.add(btnOdustani);
+		//button cancel
+		JButton cancel = new JButton("Cancel");
+		cancel.setForeground(new Color(102, 0, 102));
+		cancel.setBackground(new Color(248, 248, 255));
+		cancel.setFont(new Font("Tahoma", Font.BOLD, 13));
+		cancel.setBounds(592, 525, 98, 21);
+		contentPane.add(cancel);
 		
-		JButton btnSpremiPromjene = new JButton("Spremi promjene");
-		btnSpremiPromjene.setForeground(new Color(102, 0, 102));
-		btnSpremiPromjene.setBackground(new Color(248, 248, 255));
-		btnSpremiPromjene.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnSpremiPromjene.setBounds(713, 525, 159, 21);
-		contentPane.add(btnSpremiPromjene);
+		//button save changes
+		JButton save = new JButton("Save changes");
+		save.setForeground(new Color(102, 0, 102));
+		save.setBackground(new Color(248, 248, 255));
+		save.setFont(new Font("Tahoma", Font.BOLD, 13));
+		save.setBounds(713, 525, 159, 21);
+		contentPane.add(save);
 		
 		JLabel lblDefaultSlika = new JLabel("default slika");
 		//tu nesto ne dela
@@ -124,6 +128,6 @@ public class Postavke extends JFrame {
 		lblDefaultSlika.setIcon(new ImageIcon(defaultSlika)); */
 		lblDefaultSlika.setBounds(36, 49, 81, 102);
 		contentPane.add(lblDefaultSlika);
-		contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblUsername, textField, btnPromjeniUsername, lblEmail, textField_1, lbPassword, btnPromijeniLozinku, btnOdustani, btnSpremiPromjene, lblDefaultSlika}));
+		contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblUsername, textField, changeUsername, lblEmail, textField_1, lbPassword, changePassword, btnOdustani, save, lblDefaultSlika}));
 	}
 }
