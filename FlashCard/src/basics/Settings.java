@@ -1,27 +1,19 @@
 package basics;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Cursor;
 import javax.swing.JTextField;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
-import javax.swing.JSeparator;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Image;
 
-import javax.swing.UIManager;
 
-public class Settings extends JFrame {
+public class Settings extends JFrame implements Template{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -54,7 +46,7 @@ public class Settings extends JFrame {
 		setBounds(100, 100, 917, 610);
 		contentPane = new JPanel();
 		contentPane.setForeground(new Color(255, 255, 255));
-		contentPane.setBackground(new Color(102, 51, 102));
+		contentPane.setBackground(backgroundColor);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -62,64 +54,64 @@ public class Settings extends JFrame {
 		
 		JLabel lblUsername = new JLabel("Username:");
 		lblUsername.setForeground(new Color(255, 255, 255));
-		lblUsername.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblUsername.setBounds(36, 341, 98, 24);
+		lblUsername.setFont(mainFont);
+		lblUsername.setBounds(36, 341, 197, 24);
 		contentPane.add(lblUsername);
 		
 		textField = new JTextField();
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textField.setBounds(36, 375, 177, 19);
+		textField.setFont(secFont);
+		textField.setBounds(36, 369, 228, 33);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		//button change username
 		JButton changeUsername = new JButton("Change username");
-		changeUsername.setForeground(new Color(102, 0, 102));
-		changeUsername.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		changeUsername.setBounds(246, 375, 159, 19);
+		changeUsername.setForeground(Color.BLACK);
+		changeUsername.setFont(secFont);
+		changeUsername.setBounds(317, 369, 203, 33);
 		changeUsername.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		changeUsername.setBackground(new Color(248, 248, 255));
 		contentPane.add(changeUsername);
 		
 		JLabel lblEmail = new JLabel("Email:");
 		lblEmail.setForeground(new Color(255, 255, 255));
-		lblEmail.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblEmail.setBounds(36, 270, 81, 13);
+		lblEmail.setFont(mainFont);
+		lblEmail.setBounds(36, 259, 98, 24);
 		contentPane.add(lblEmail);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(36, 293, 177, 19);
+		textField_1.setBounds(36, 293, 330, 33);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
 		JLabel lbPassword = new JLabel("Password:");
 		lbPassword.setForeground(new Color(255, 255, 255));
-		lbPassword.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lbPassword.setBounds(36, 428, 98, 13);
+		lbPassword.setFont(mainFont);
+		lbPassword.setBounds(36, 412, 177, 24);
 		contentPane.add(lbPassword);
 		
 		//button change password
 		JButton changePassword = new JButton("Change password");
-		changePassword.setForeground(new Color(102, 0, 102));
+		changePassword.setForeground(Color.BLACK);
 		changePassword.setBackground(new Color(248, 248, 255));
-		changePassword.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		changePassword.setBounds(36, 451, 181, 21);
+		changePassword.setFont(secFont);
+		changePassword.setBounds(36, 446, 203, 33);
 		contentPane.add(changePassword);
 		
 		//button cancel
 		JButton cancel = new JButton("Cancel");
-		cancel.setForeground(new Color(102, 0, 102));
+		cancel.setForeground(Color.BLACK);
 		cancel.setBackground(new Color(248, 248, 255));
-		cancel.setFont(new Font("Tahoma", Font.BOLD, 13));
-		cancel.setBounds(592, 525, 98, 21);
+		cancel.setFont(secFont);
+		cancel.setBounds(592, 513, 98, 33);
 		contentPane.add(cancel);
 		
 		//button save changes
 		JButton save = new JButton("Save changes");
-		save.setForeground(new Color(102, 0, 102));
+		save.setForeground(Color.BLACK);
 		save.setBackground(new Color(248, 248, 255));
-		save.setFont(new Font("Tahoma", Font.BOLD, 13));
-		save.setBounds(713, 525, 159, 21);
+		save.setFont(secFont);
+		save.setBounds(713, 513, 159, 33);
 		contentPane.add(save);
 		
 		JLabel lblDefaultSlika = new JLabel("default slika");
