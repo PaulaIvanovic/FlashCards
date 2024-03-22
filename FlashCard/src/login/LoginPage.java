@@ -1,12 +1,15 @@
 package login;
 
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Image;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JTextField;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
@@ -44,66 +47,81 @@ public class LoginPage extends JFrame {
 	 * Create the frame.
 	 */
 	public LoginPage() {
+		setTitle("REGISTER PAGE");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 804, 534);
+		setBounds(100, 100, 800, 530);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(0, 0, 128));
+		contentPane.setBackground(new Color(69, 62, 130));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(1, 89, 254));
-		panel.setBounds(10, 10, 770, 477);
-		contentPane.add(panel);
-		panel.setLayout(null);
-		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(128, 207, 255));
-		panel_1.setBounds(220, 0, 550, 477);
-		panel.add(panel_1);
+		panel_1.setBounds(188, 29, 496, 464);
+		contentPane.add(panel_1);
+		panel_1.setBackground(new Color(69, 62, 130));
 		panel_1.setLayout(null);
 		
-		user = new JTextField();
-		user.setBounds(175, 138, 239, 19);
-		panel_1.add(user);
-		user.setColumns(10);
+		JLabel usernameText = new JLabel("Username:");
+		usernameText.setFont(new Font("Tahoma", Font.BOLD, 12));
+		usernameText.setForeground(Color.WHITE);
+		usernameText.setBounds(82, 161, 160, 25);
+		panel_1.add(usernameText);
 		
-		JButton btnLogin = new JButton("Login");
-		btnLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnLogin.setBounds(329, 236, 85, 21);
-		panel_1.add(btnLogin);
+		JLabel textpass = new JLabel("Password:");
+		textpass.setFont(new Font("Tahoma", Font.BOLD, 12));
+		textpass.setForeground(Color.WHITE);
+		textpass.setBounds(82, 224, 85, 13);
+		panel_1.add(textpass);
 		
-		pass = new JPasswordField();
-		pass.setBounds(175, 180, 239, 19);
-		panel_1.add(pass);
-		
-		JLabel lblNewLabel = new JLabel("UserName:");
-		lblNewLabel.setBounds(25, 138, 85, 19);
-		panel_1.add(lblNewLabel);
-		
-		JLabel lblNewLabel_1 = new JLabel("Password:");
-		lblNewLabel_1.setBounds(25, 183, 85, 13);
-		panel_1.add(lblNewLabel_1);
-		
-		JLabel lblNewLabel_2 = new JLabel("Do not have an account?");
+		JLabel lblNewLabel_2 = new JLabel("Already have an account?");
 		lblNewLabel_2.setForeground(new Color(255, 0, 0));
-		lblNewLabel_2.setBounds(51, 294, 205, 13);
+		lblNewLabel_2.setBounds(47, 396, 205, 13);
 		panel_1.add(lblNewLabel_2);
 		
-		JButton btnNewButton = new JButton("Register");
-		btnNewButton.addActionListener(new ActionListener(){
+		//funkcionalnost login buttona
+		JButton loginBtn = new JButton("Login");
+		loginBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				LoginPage login = new LoginPage();
+				login.setVisible(true);
+				dispose();
+			}
+		});
+		loginBtn.setBounds(283, 330, 85, 21);
+		panel_1.add(loginBtn);
+		
+		JButton registerBtn = new JButton("Register");
+		registerBtn.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				RegisterPage register = new RegisterPage();
 				register.setVisible(true);
 				dispose();
 			}
 		});
-		btnNewButton.setBounds(329, 290, 85, 21);
-		panel_1.add(btnNewButton);
+		registerBtn.setBounds(283, 388, 85, 21);
+		panel_1.add(registerBtn);
+		
+		user = new JTextField();
+		user.setColumns(10);
+		user.setBounds(82, 195, 273, 19);
+		panel_1.add(user);
+		
+		pass = new JPasswordField();
+		pass.setBounds(82, 252, 273, 19);
+		panel_1.add(pass);
+		
+		JLabel lblNewLabel = new JLabel("FLASH CARDS");
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setFont(new Font("Nirmala UI", Font.BOLD, 54));
+		lblNewLabel.setBounds(112, 30, 374, 81);
+		panel_1.add(lblNewLabel);
+		
+		JLabel photoLabel = new JLabel("");
+		Image IMG = new ImageIcon(this.getClass().getResource("/logo.png")).getImage().getScaledInstance(90, 90,Image.SCALE_DEFAULT);;
+		photoLabel.setIcon(new ImageIcon(IMG));
+		photoLabel.setBounds(10, 30, 78, 81);
+		panel_1.add(photoLabel);
 	}
 }
