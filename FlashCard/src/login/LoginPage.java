@@ -2,12 +2,13 @@ package login;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.geom.RoundRectangle2D;
 import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-public class LoginPage extends JFrame {
+public class LoginPage extends JFrame implements Template{
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
@@ -28,18 +29,122 @@ public class LoginPage extends JFrame {
         });
     }
 
+    class RoundButton extends JButton {
+        public RoundButton(String label) {
+            super(label);
+            Dimension size = getPreferredSize();
+            size.width = size.height = Math.max(size.width, size.height);
+            setPreferredSize(size);
+            setContentAreaFilled(false);
+        }
+
+        protected void paintComponent(Graphics g) {
+            if (getModel().isArmed()) {
+                g.setColor(Color.lightGray);
+            } else {
+                g.setColor(getBackground());
+            }
+            g.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+            super.paintComponent(g);
+        }
+
+        protected void paintBorder(Graphics g) {
+            g.setColor(getForeground());
+            g.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+        }
+
+        Shape shape;
+
+        public boolean contains(int x, int y) {
+            if (shape == null || !shape.getBounds().equals(getBounds())) {
+                shape = new RoundRectangle2D.Float(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+            }
+            return shape.contains(x, y);
+        }
+    }
+
+    class RoundTextField extends JTextField {
+        private Shape shape;
+        private Color borderColor = Color.BLACK;
+
+        public RoundTextField(int size) {
+            super(size);
+            setOpaque(false); // da se boja pozadine ne crta ispod teksta
+            setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10)); // postavljanje praznog ruba kako bi tekst bio pomaknut od ruba
+        }
+
+        protected void paintComponent(Graphics g) {
+            g.setColor(getBackground());
+            g.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+            super.paintComponent(g);
+        }
+
+        protected void paintBorder(Graphics g) {
+            g.setColor(borderColor);
+            g.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+        }
+
+        public boolean contains(int x, int y) {
+            if (shape == null || !shape.getBounds().equals(getBounds())) {
+                shape = new RoundRectangle2D.Float(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+            }
+            return shape.contains(x, y);
+        }
+
+        public void setBorderColor(Color color) {
+            this.borderColor = color;
+            repaint();
+        }
+    }
+
+    class RoundPasswordField extends JPasswordField {
+        private Shape shape;
+        private Color borderColor = Color.BLACK;
+
+        public RoundPasswordField(int size) {
+            super(size);
+            setOpaque(false);
+            setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        }
+
+        protected void paintComponent(Graphics g) {
+            g.setColor(getBackground());
+            g.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+            super.paintComponent(g);
+        }
+
+        protected void paintBorder(Graphics g) {
+            g.setColor(borderColor);
+            g.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+        }
+
+        public boolean contains(int x, int y) {
+            if (shape == null || !shape.getBounds().equals(getBounds())) {
+                shape = new RoundRectangle2D.Float(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+            }
+            return shape.contains(x, y);
+        }
+
+        public void setBorderColor(Color color) {
+            this.borderColor = color;
+            repaint();
+        }
+    }
+
     public LoginPage() {
         setTitle("REGISTER PAGE");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 800, 530);
+
         contentPane = new JPanel();
+        contentPane = (JPanel) getContentPane(); // Dodajte ovu liniju
         contentPane.setBackground(new Color(69, 62, 130));
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        contentPane.setLayout(null); // Postavite layout ovdje
         setContentPane(contentPane);
-        contentPane.setLayout(null);
-        
+       
         JPanel panel_1 = new JPanel();
-        panel_1.setBounds(188, 29, 496, 464);
+        panel_1.setBounds(159, 19, 496, 464);
         contentPane.add(panel_1);
         panel_1.setBackground(new Color(69, 62, 130));
         panel_1.setLayout(null);
@@ -58,18 +163,18 @@ public class LoginPage extends JFrame {
         
         JLabel lblNewLabel_2 = new JLabel("Already have an account?");
         lblNewLabel_2.setForeground(new Color(255, 0, 0));
-        lblNewLabel_2.setBounds(47, 396, 205, 13);
+        lblNewLabel_2.setBounds(46, 391, 207, 13);
         panel_1.add(lblNewLabel_2);
         
-        JButton loginBtn = new JButton("Login");
+        RoundButton loginBtn = new RoundButton("Login");
         loginBtn.setForeground(Color.BLACK);
-        loginBtn.setFont(new Font("Tahoma", Font.BOLD, 12));
+        loginBtn.setFont(secFont);
         loginBtn.setBounds(283, 330, 85, 21);
         panel_1.add(loginBtn);
         
-        JButton registerBtn = new JButton("Register");
+        RoundButton registerBtn = new RoundButton("Register");
         registerBtn.setForeground(Color.BLACK);
-        registerBtn.setFont(new Font("Tahoma", Font.BOLD, 12));
+        registerBtn.setFont(secFont);
         registerBtn.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 RegisterPage register = new RegisterPage();
@@ -80,9 +185,9 @@ public class LoginPage extends JFrame {
         registerBtn.setBounds(283, 388, 85, 21);
         panel_1.add(registerBtn);
         
-        user = new JTextField("Enter your name");
-        user.setColumns(10);
-        user.setBounds(82, 195, 273, 19);
+        user = new RoundTextField(10);
+        user.setBounds(82, 195, 273, 25);
+        user.setText("Enter your name");
         user.addFocusListener(new FocusListener() {
             public void focusGained(FocusEvent e) {
                 if (user.getText().equals("Enter your name")) {
@@ -98,35 +203,34 @@ public class LoginPage extends JFrame {
         });
         panel_1.add(user);
         
-        pass = new JPasswordField();
-        pass.setBounds(82, 252, 273, 19);
+        RoundPasswordField pass = new RoundPasswordField(10);
+        pass.setBounds(82, 252, 273, 25);
         pass.setEchoChar('\u2022');
         panel_1.add(pass);
 
-        // Dodano: labela za prikaz teksta prije unosa lozinke
         passPlaceholder = new JLabel("Enter your password");
         passPlaceholder.setForeground(Color.GRAY);
         passPlaceholder.setBounds(82, 252, 273, 19);
-        panel_1.add(passPlaceholder); // Dodajemo labelu u panel
+        panel_1.add(passPlaceholder); 
 
-        // Postavljanje teksta "Enter your password" u polju za unos lozinke
-        pass.setEchoChar((char) 0); // Omogućuje prikazivanje teksta umjesto zvjezdica
+        // "Enter your password" in text field
+        pass.setEchoChar((char) 0); 
         pass.setText("Enter your password");
 
         pass.addFocusListener(new FocusListener() {
             public void focusGained(FocusEvent e) {
-                pass.setEchoChar('\u2022'); // Postavljanje natrag zvjezdica prilikom fokusa
+                pass.setEchoChar('\u2022'); 
                 if (new String(pass.getPassword()).equals("Enter your password")) {
-                    pass.setText(""); // Briše tekst samo ako je "Enter your password" prisutno
+                    pass.setText(""); 
                 }
-                passPlaceholder.setVisible(false); // Sakriva labelu kada je polje za unos lozinke fokusirano
+                passPlaceholder.setVisible(false); 
             }
 
             public void focusLost(FocusEvent e) {
                 if (pass.getPassword().length == 0) {
-                    pass.setEchoChar((char) 0); // Omogućuje prikazivanje teksta umjesto zvjezdica
-                    pass.setText("Enter your password"); // Postavljanje teksta samo ako nema unosa
-                    passPlaceholder.setVisible(true); // Ponovno prikazuje labelu ako nema unosa u polju za lozinku
+                    pass.setEchoChar((char) 0); 
+                    pass.setText("Enter your password"); 
+                    passPlaceholder.setVisible(true); 
                 }
             }
         });
@@ -152,7 +256,7 @@ public class LoginPage extends JFrame {
                 }
             }
         });
-
+     
 
         JLabel lblNewLabel = new JLabel("FLASH CARDS");
         lblNewLabel.setForeground(new Color(255, 255, 255));
@@ -161,32 +265,21 @@ public class LoginPage extends JFrame {
         panel_1.add(lblNewLabel);
         
         JLabel photoLabel = new JLabel("");
+        Image IMG = new ImageIcon(this.getClass().getResource("/logo.png")).getImage().getScaledInstance(90, 90,Image.SCALE_DEFAULT);
+		photoLabel.setIcon(new ImageIcon(IMG));
         photoLabel.setBounds(10, 30, 78, 81);
         panel_1.add(photoLabel);
         
-        //rounded corners on button
-        loginBtn.setBorder(new RoundedBorder(20));
-        registerBtn.setBorder(new RoundedBorder(20));
+        centerFrame(this);
     }
     
-    //class for rounded buttons
-    class RoundedBorder implements Border {
-        private int radius;
-
-        RoundedBorder(int radius) {
-            this.radius = radius;
-        }
-
-        public Insets getBorderInsets(Component c) {
-            return new Insets(this.radius+1, this.radius+1, this.radius+2, this.radius);
-        }
-
-        public boolean isBorderOpaque() {
-            return true;
-        }
-
-        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-            g.drawRoundRect(x, y, width-1, height-1, radius, radius);
-        }
+    private static void centerFrame(Window window) {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension windowSize = window.getSize();
+        int x = (screenSize.width - windowSize.width) / 2;
+        int y = (screenSize.height - windowSize.height) / 2;
+        window.setLocation(x, y);
     }
+    
 }
+
