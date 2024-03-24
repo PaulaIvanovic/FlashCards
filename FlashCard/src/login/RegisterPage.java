@@ -7,14 +7,21 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import login.LoginPage.RoundTextField;
+
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Insets;
+import java.awt.Shape;
 
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
+import java.awt.Window;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -24,6 +31,8 @@ import java.awt.Dimension;
 import javax.swing.SwingConstants;
 import java.awt.Component;
 import java.awt.ComponentOrientation;
+
+import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -44,6 +53,13 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextPane;
+import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.UnsupportedLookAndFeelException;
 
 public class RegisterPage extends JFrame implements Template{
 
@@ -56,7 +72,7 @@ public class RegisterPage extends JFrame implements Template{
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -68,6 +84,109 @@ public class RegisterPage extends JFrame implements Template{
 			}
 		});
 	}
+	
+	class RoundButton extends JButton {
+	    public RoundButton(String label) {
+	        super(label);
+	        Dimension size = getPreferredSize();
+	        size.width = size.height = Math.max(size.width, size.height);
+	        setPreferredSize(size);
+	        setContentAreaFilled(false);
+	    }
+
+	    protected void paintComponent(Graphics g) {
+	        if (getModel().isArmed()) {
+	            g.setColor(Color.lightGray);
+	        } else {
+	            g.setColor(getBackground());
+	        }
+	        g.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+	        super.paintComponent(g);
+	    }
+
+	    protected void paintBorder(Graphics g) {
+	        g.setColor(getForeground());
+	        g.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+	    }
+
+	    Shape shape;
+
+	    public boolean contains(int x, int y) {
+	        if (shape == null || !shape.getBounds().equals(getBounds())) {
+	            shape = new RoundRectangle2D.Float(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+	        }
+	        return shape.contains(x, y);
+	    }
+	}
+	
+	class RoundTextField extends JTextField {
+	    private Shape shape;
+	    private Color borderColor = Color.BLACK;
+
+	    public RoundTextField(int size) {
+	        super(size);
+	        setOpaque(false); // da se boja pozadine ne crta ispod teksta
+	        setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10)); // postavljanje praznog ruba kako bi tekst bio pomaknut od ruba
+	    }
+
+	    protected void paintComponent(Graphics g) {
+	        g.setColor(getBackground());
+	        g.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+	        super.paintComponent(g);
+	    }
+
+	    protected void paintBorder(Graphics g) {
+	        g.setColor(borderColor);
+	        g.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+	    }
+
+	    public boolean contains(int x, int y) {
+	        if (shape == null || !shape.getBounds().equals(getBounds())) {
+	            shape = new RoundRectangle2D.Float(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+	        }
+	        return shape.contains(x, y);
+	    }
+
+	    public void setBorderColor(Color color) {
+	        this.borderColor = color;
+	        repaint();
+	    }
+	}
+	
+	 class RoundPasswordField extends JPasswordField {
+	        private Shape shape;
+	        private Color borderColor = Color.BLACK;
+
+	        public RoundPasswordField(int size) {
+	            super(size);
+	            setOpaque(false);
+	            setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+	        }
+
+	        protected void paintComponent(Graphics g) {
+	            g.setColor(getBackground());
+	            g.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+	            super.paintComponent(g);
+	        }
+
+	        protected void paintBorder(Graphics g) {
+	            g.setColor(borderColor);
+	            g.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+	        }
+
+	        public boolean contains(int x, int y) {
+	            if (shape == null || !shape.getBounds().equals(getBounds())) {
+	                shape = new RoundRectangle2D.Float(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+	            }
+	            return shape.contains(x, y);
+	        }
+
+	        public void setBorderColor(Color color) {
+	            this.borderColor = color;
+	            repaint();
+	        }
+	    }
+
 
 	public RegisterPage() {
 		
@@ -82,7 +201,7 @@ public class RegisterPage extends JFrame implements Template{
 		contentPane.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(203, 29, 496, 464);
+		panel_1.setBounds(170, 19, 496, 464);
 		contentPane.add(panel_1);
 		panel_1.setBackground(new Color(69, 62, 130));
 		panel_1.setLayout(null);
@@ -109,7 +228,7 @@ public class RegisterPage extends JFrame implements Template{
 		panel_1.add(lblNewLabel_2);
 		
 		//login button function
-		JButton loginBtn = new JButton("Login");
+		RoundButton loginBtn = new RoundButton("Login");
 		loginBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				LoginPage login = new LoginPage();
@@ -130,9 +249,10 @@ public class RegisterPage extends JFrame implements Template{
 		emailText.setBounds(82, 224, 45, 13);
 		panel_1.add(emailText);
 		
-		user = new JTextField();
+		RoundTextField user = new RoundTextField(10);
 		user.setColumns(10);
-		user.setBounds(82, 195, 273, 19);
+		user.setBounds(82, 195, 273, 25);
+		user.setMargin(new Insets(5, 10, 5, 10)); // Postavljanje unutarnjeg paddinga
 		panel_1.add(user);
 		
 		JLabel userPlaceholder = new JLabel("Enter your username");
@@ -159,9 +279,10 @@ public class RegisterPage extends JFrame implements Template{
 		    }
 		});
 		
-		emailField = new JTextField();
+		RoundTextField emailField = new RoundTextField(10);
 		emailField.setColumns(10);
-		emailField.setBounds(82, 247, 273, 19);
+		emailField.setBounds(82, 247, 273, 25);
+		emailField.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
 		panel_1.add(emailField);
 		
 		JLabel emailPlaceholder = new JLabel("Enter your email");
@@ -188,8 +309,8 @@ public class RegisterPage extends JFrame implements Template{
 		    }
 		});
 		
-		pass = new JPasswordField();
-		pass.setBounds(82, 299, 273, 19);
+		RoundPasswordField pass = new RoundPasswordField(10);
+		pass.setBounds(82, 299, 273, 25);
 		panel_1.add(pass);
 
 		JLabel passPlaceholder = new JLabel("Enter your password");
@@ -264,7 +385,7 @@ public class RegisterPage extends JFrame implements Template{
 		lblNewLabel_3.setForeground(textRed);
 		
 		//register button function
-		JButton registerBtn = new JButton("Register");
+		RoundButton registerBtn = new RoundButton("Register");
 		registerBtn.setBounds(270, 361, 85, 21);
 		panel_1.add(registerBtn);
 		registerBtn.addActionListener(new ActionListener() {
@@ -272,8 +393,17 @@ public class RegisterPage extends JFrame implements Template{
 			}
 		});
 		
+		centerFrame(this);
 		registerBtn.setForeground(Color.BLACK);
 		registerBtn.setFont(new Font("Dialog", Font.PLAIN, 12));
+		
 	}
+	private static void centerFrame(Window window) {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension windowSize = window.getSize();
+        int x = (screenSize.width - windowSize.width) / 2;
+        int y = (screenSize.height - windowSize.height) / 2;
+        window.setLocation(x, y);
+    }
 	}
 
